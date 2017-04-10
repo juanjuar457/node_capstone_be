@@ -11,6 +11,24 @@ app.use(logger("dev")); //configures middlware for color codes in our api respon
 app.use(jsonParser());
 app.use("/materials", routes); 
 
+//error occurs, express finds 1st error handling middleware
+//catch 404 and forward to error handler. 
+app.use((req,res,next) => {
+	let err = new Error("Not Found");
+	err.status =  404;
+	next(err); 
+});
+
+//error handler -- they have 4 params!!!  
+app.use((err,req,res,next) => {
+	res.status(err.status || 500)
+	res.json({
+		error: {
+			message: err.message
+		}
+	});
+});
+
 app.use((req,res,next) => {
 	if(req.body){
 		console.log("the sky is", req.body.color);
@@ -40,8 +58,11 @@ app.use((req, res, next) => {
 
 
 app.listen(process.env.PORT || 8080, () => {
-  console.log(`Your app is listening on port ${process.env.PORT || 8080}`);
+  console.log(`Order for later is listening on port: ${process.env.PORT || 8080}`);
 });
+
+
+
 
 
 // >>>>>>>>NOTE!!! <<<<<<<<<<<<<<<<<<
