@@ -1,7 +1,8 @@
 'use strict';
 
-const require = require("mongoose");
-
+const mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://localhost:27017/sandbox");
 const Schema = mongoose.Schema; 
 
 
@@ -11,7 +12,7 @@ const MaterialSchema = new Schema({
 	product_name: String, 
 	catalog_number: String, 
 	unit_size: String, 
-	units: String
+	units: String,
 	createDate: {type: Date, default: Date.now} //
 })
 

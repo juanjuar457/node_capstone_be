@@ -60,10 +60,6 @@ app.listen(process.env.PORT || 8080, () => {
   console.log(`Order for later is listening on port: ${process.env.PORT || 8080}`);
 })
 
-
-
-
-
 // >>>>>>>>NOTE!!! <<<<<<<<<<<<<<<<<<
 //Express must parse incoming JSON with middleware!! it can't do it on its own! 
 

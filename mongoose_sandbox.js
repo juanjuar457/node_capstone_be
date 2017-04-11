@@ -44,6 +44,21 @@ db.once("open", () => {
 			console.log("db connection closed");
 		}); 
 	}); 
-	
 
 }); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
