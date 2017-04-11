@@ -45,6 +45,5 @@ db.once("open", () => {
 		}); 
 	}); 
 	
-	animal.save();
 
 }); 

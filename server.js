@@ -3,21 +3,20 @@
 const express = require('express');
 const app = express();
 const routes = require("./routes"); 
-const jsonParser = require("body-parser").json; 
 const logger = require("morgan"); 
 
-//cotains many parsers to manage http requests, under body-parser
+
 app.use(logger("dev")); //configures middlware for color codes in our api respones. 
-app.use(jsonParser());
+
 app.use("/materials", routes); 
 
 //error occurs, express finds 1st error handling middleware
 //catch 404 and forward to error handler. 
 app.use((req,res,next) => {
-	let err = new Error("Not Found");
+	let err = new Error("Not Found")
 	err.status =  404;
 	next(err); 
-});
+})
 
 //error handler -- they have 4 params!!!  
 app.use((err,req,res,next) => {
@@ -27,7 +26,7 @@ app.use((err,req,res,next) => {
 			message: err.message
 		}
 	});
-});
+})
 
 app.use((req,res,next) => {
 	if(req.body){
@@ -54,12 +53,12 @@ app.use("/different/:id", (req,res,next) => {
 app.use((req, res, next) => {
 	console.log("test test");
 	next(); 
-});
+})
 
 
 app.listen(process.env.PORT || 8080, () => {
   console.log(`Order for later is listening on port: ${process.env.PORT || 8080}`);
-});
+})
 
 
 

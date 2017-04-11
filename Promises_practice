@@ -1,0 +1,11 @@
+//practice with promises
+
+var calculationPromise = new Promise((resolve,reject) => {
+    setTimeout () => {
+        resolve(1 + 1);
+}
+    });
+
+
+//TH video >>>>>> video 2 th ws jspromises /type old way then way with proms
+//use ex's from the rest api course, make in es5 and transpose later

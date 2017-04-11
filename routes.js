@@ -2,6 +2,9 @@
 
 const express = require("express"); 
 const router = express.Router(); 
+const jsonParser = require("body-parser").json;
+app.use(jsonParser());
+const models = require("./models");
 
 //GET /materials
 //Route for materials collection 
@@ -10,13 +13,31 @@ router.get("/", (req, res) => {
 });
 
 //POST /materials
-//Route for creating the materials 
-router.post("/", (req, res) => {
-	res.json({
+//Route for creating new materials 
+router.post("/adminlogin", (req, res) => {
+	let username = req.body.username;
+	let password = req.body.password;
+	models.User.findOne({
+		user: username, password
+	}) //doc looks for user, username and password that was passed in. 
+	res.json({. //use the apirpr function needed on models + check the .then in the mongoose section.
 		response: "You sent me a POST request",
 		body: req.body
 	}); 
 });
+
+router.post("/guestlogin", (req, res) => {
+	let organization = req.body.organization;
+	let passcode = req.body.passcode;
+	models.User.findOne({
+		user: username, password
+	}) //doc looks for user, username and password that was passed in. 
+	res.json({. //use the apirpr function needed on models + check the .then in the mongoose section.
+		response: "You sent me a POST request",
+		body: req.body
+	}); 
+});
+
 
 //PUT /materials/:mID/ordered
 //Add color to indicate ordered material, indicate already ordered..
@@ -45,7 +66,8 @@ router.delete("/:mID/ordered", (req, res) => {
 //not sure how to get ALL the materials we need...
 // //GET /materials
 // router.get("/5/materials") ????
-//should we need a id route for materials is they are all on the same page??? 
+//should we need a id route for materials for post and put
+//if they are all on the same page??? 
 
 
 
