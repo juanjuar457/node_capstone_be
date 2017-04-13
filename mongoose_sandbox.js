@@ -13,7 +13,7 @@ db.on("error", (err) => {
 db.once("open", () => {
 	console.log("db connection successful");
 	//all db comms goes here 
-
+//trying to load the defaults
 	const Schema = mongoose.Schema;
 	const MaterialSchema = new Schema({
 		vendor: {type: String, default: "B & B Pharma"},
